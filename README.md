@@ -14,3 +14,10 @@ key    | action
 ```k```| Scroll down a line
 ```J```| Scroll up five lines
 ```K```| Scroll down five lines
+```r```| Remove a line
+```w```| Erase a line
+```enter``` | continue writing after the last used line
+```s```| Save the file
+```S```| Specify a new filename
+```q```| Quit
+```Q```| Quit without saving
