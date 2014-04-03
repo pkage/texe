@@ -3,6 +3,9 @@ texe
 
 a text editor
 
+dependancies
+============
+ncurses, c++ standard library
 
 commands:
 ========
