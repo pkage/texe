@@ -3,7 +3,7 @@ texe
 
 a text editor
 
-dependancies
+dependencies
 ============
 ncurses, c++ standard library
 
