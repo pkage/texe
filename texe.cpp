@@ -2,6 +2,8 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <cstdlib>
+#include <cstring>
 
 using namespace std;
 
@@ -63,7 +65,7 @@ public:
 		if (contents.size() == 0) {contents.push_back("");}
 		string tmp;
 		for (int c = line; (c < line + (LINES - 1)) && (c < contents.size()); c++) {
-			tmp += itos(c + 1) + " | " + contents.at(c) + "\n";
+			tmp += itos(c + 1) + "\t| " + contents.at(c) + "\n";
 		}
 		return tmp;
 	}
@@ -167,7 +169,7 @@ bool editor(string fpath, bool n) {
 	File file;
 	if (!n) {
 		if (!file.init(fpath)) {
-			xmvaddstr(0,0,"failed to open " + fpath);getch();
+			xmvaddstr(0,0,"failed to open " + fpath + "\t<press any key to continue>");getch();
 		}
 	}
 	char c; int line = 0, tmp2, p_line = 0;string tmp;
@@ -223,7 +225,7 @@ bool editor(string fpath, bool n) {
 		}
 		if (c == 'q') {
 			if (!file.isSaved()) {
-				xmvaddstr(LINES - 1, 0, "file not saved, use SHIFT-Q to quit anyways.");
+				xmvaddstr(LINES - 1, 0, "file not saved, use SHIFT-Q to quit anyways.\t<press any key to continue>");
 				getch();
 			} else {
 				break;
