@@ -126,6 +126,12 @@ public:
 		}
 		saved = false;
 	}
+	void switchLines(int ln, int ln2) {
+		string l1 = contents.at(ln);
+		string l2 = contents.at(ln2);
+		contents.at(ln) = l2;
+		contents.at(ln2) = l1;
+	}
 	void save(char c) {
 		if (newfile || c == 'S') {
 			xmvaddstr(LINES-1, 0, "File name: ");
@@ -173,6 +179,7 @@ bool editor(string fpath, bool n) {
 		}
 	}
 	char c; int line = 0, tmp2, p_line = 0;string tmp;
+	int tmp3;
 	do {
 		clear();
 		xmvaddstr(0,0,file.getViewPort(line));
@@ -219,6 +226,13 @@ bool editor(string fpath, bool n) {
 			p_line++;
 			xmvaddstr(LINES - 1, 0, ":" + itos(p_line) + ":");
 			file.insertString(p_line, xscanw(LINES - 1,(itos(p_line).length() + 2)));
+		}
+		if (c == 'd') {
+			xmvaddstr(LINES - 1, 0, ":");
+			tmp2 = _stoi(xscanw(LINES - 1, 1));
+			xmvaddstr(LINES - 1,itos(tmp2).length(),":");
+			tmp3 = _stoi(xscanw(LINES - 1, itos(tmp2).length() + 2));
+			file.switchLines(tmp2,tmp3);
 		}
 		if (c == 's' || c == 'S') {
 			file.save(c);
